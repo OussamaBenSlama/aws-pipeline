@@ -1,0 +1,13 @@
+asgiref
+Django
+mysqlclient
+PyMySQL
+python-decouple
+sqlparse
+tzdata
+django-cors-headers
+djangorestframework
+cryptography
+markdown
+django-filter
+gunicorn

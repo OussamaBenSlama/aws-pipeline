@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.db
+media/
+staticfiles/
+*.migrations/
+.DS_Store
+*.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Next.js
+.next/
+out/
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+.env
+db/
+.aws/
