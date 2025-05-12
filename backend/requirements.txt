@@ -11,3 +11,5 @@ cryptography
 markdown
 django-filter
 gunicorn
+dotenv
+django-environ
