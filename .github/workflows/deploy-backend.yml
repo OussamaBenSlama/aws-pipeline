@@ -38,6 +38,9 @@ jobs:
 
           docker pull ${{ secrets.DOCKER_USERNAME }}/cv_stream_backend:latest
 
-          docker-compose  down
-          docker-compose up -d
+          docker stop backend || true
+          docker rm backend || true
+
+          # Run the new container
+          docker run -d --name backend -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/cv_stream_backend:latest
         EOF
