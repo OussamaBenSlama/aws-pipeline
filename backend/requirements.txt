@@ -13,3 +13,4 @@ django-filter
 gunicorn
 dotenv
 django-environ
+whitenoise
