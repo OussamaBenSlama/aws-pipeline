@@ -40,6 +40,7 @@ jobs:
 
           docker stop backend || true
           docker rm backend || true
+          cd backend
           docker run -d --name backend --env-file .env -p 8000:8000 --restart always ${{ secrets.DOCKER_USERNAME }}/cv_stream_backend:latest
         EOF
 
