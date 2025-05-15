@@ -33,7 +33,7 @@ const Home = () => {
 
   const handleNewReview = async (review: { name: string; rating: number; comment: string }) => {
     try {
-      const response = await fetch(`http://98.81.252.11:8000/reviews`, {
+      const response = await fetch(`http://98.81.252.11:8000/reviews/`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review),
