@@ -1,6 +1,6 @@
-from django.urls import path,include
-from .views import main
+from django.urls import path
+from .views import review_list_create
 
 urlpatterns = [
-    path('', main, name='main'),
+    path('reviews/', review_list_create, name='review-list-create'),
 ]

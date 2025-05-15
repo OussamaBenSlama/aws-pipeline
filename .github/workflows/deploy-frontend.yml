@@ -40,6 +40,6 @@ jobs:
 
           docker stop frontend || true
           docker rm frontend || true
-          docker run -d --name frontend -p 3000:3000 --restart always ${{ secrets.DOCKER_USERNAME }}/cv_stream_frontend:latest
+          docker run -d --name frontend --env-file .env -p 3000:3000 --restart always ${{ secrets.DOCKER_USERNAME }}/cv_stream_frontend:latest
         EOF
 

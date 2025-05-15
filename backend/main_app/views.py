@@ -1,4 +1,19 @@
-from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Review
+from .serializers import ReviewSerializer
 
-def main(request):
-    return HttpResponse("<h1>Hello World</h1>")
+@api_view(['GET', 'POST'])
+def review_list_create(request):
+    if request.method == 'GET':
+        reviews = Review.objects.all().order_by('-date')  
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
