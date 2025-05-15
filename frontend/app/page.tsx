@@ -18,7 +18,7 @@ const Home = () => {
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:3000/reviews`);
+      const response = await fetch(`http://98.81.252.11/:8000/reviews`);
       if (!response.ok) throw new Error('Failed to fetch reviews');
       const data = await response.json();
       setReviews(data);
@@ -33,7 +33,7 @@ const Home = () => {
 
   const handleNewReview = async (review: { name: string; rating: number; comment: string }) => {
     try {
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:3000/reviews`, {
+      const response = await fetch(`http://98.81.252.11/:8000/reviews`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review),
