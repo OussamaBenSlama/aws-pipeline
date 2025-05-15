@@ -1,19 +1,27 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from .models import Review
-from .serializers import ReviewSerializer
+import json
 
-@api_view(['GET', 'POST'])
-def review_list_create(request):
-    if request.method == 'GET':
-        reviews = Review.objects.all().order_by('-date')  
-        serializer = ReviewSerializer(reviews, many=True)
-        return Response(serializer.data)
+@csrf_exempt
+def reviews_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            review = Review.objects.create(
+                name=data['name'],
+                rating=data['rating'],
+                comment=data['comment']
+            )
+            return JsonResponse({
+                "id": review.id,
+                "name": review.name,
+                "rating": review.rating,
+                "comment": review.comment
+            })
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
 
-    elif request.method == 'POST':
-        serializer = ReviewSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        reviews = list(Review.objects.all().order_by('-id').values())
+        return JsonResponse(reviews, safe=False)
