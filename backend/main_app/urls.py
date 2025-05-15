@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import review_list_create
+from .views import ReviewCRUDView
 
 urlpatterns = [
-    path('reviews/', review_list_create, name='review-list-create'),
+    path('reviews/', ReviewCRUDView.as_view(), name='review-crud'),
 ]
